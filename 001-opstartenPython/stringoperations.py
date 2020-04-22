@@ -34,8 +34,8 @@ print('lengte van kieft is', lengteAchternaam, 'letters')
 letterEnAchternaam = wim[0: 1] + ". " + wim[wim.find(" ")+1:]
 print(letterEnAchternaam)
 
-vierKeerWim = (len(wim[0:wim.find(" ")]) *
+drieKeerWim = (len(wim[0:wim.find(" ")]) *
                (wim[0:wim.find(" ")]+"! ")).strip(" ")
-print(vierKeerWim)
+print(drieKeerWim)
 
-print(vierKeerWim[-1] == " ")
+print(drieKeerWim[-1] == " ")
