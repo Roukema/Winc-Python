@@ -1,15 +1,18 @@
-# is het een expressie
 
-3  # wel
-3 + 3  # wel
-prijs = 5  # niet
-aantal = 3  # niet
-prijs * aantal  # wel
-totaalPrijs = prijs * aantal  # niet
+3
+3 + 3
+prijs = 5
 
-totaalPrijs  # wel
-print(totaalPrijs)  # wel
-frank = "Frank Rijkaard"  # niet
-print(f'Hallo {frank}')  # wel
-f'Hoi {frank}'  # wel
-f'Zeg {frank}, jouw voornaam heeft {len(frank[:5])} karakters.'  # wel
+aantal = 3
+
+prijs * aantal
+totaalPrijs = prijs * aantal
+
+
+totaalPrijs
+print(totaalPrijs)
+frank = "Frank Rijkaard"
+
+print(f'Hallo {frank}')
+f'Hoi {frank}'
+f'Zeg {frank}, jouw voornaam heeft {len(frank[:5])} karakters.'

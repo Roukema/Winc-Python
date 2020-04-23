@@ -26,19 +26,19 @@ if not deKoeienZijnBinnen and erIsRegen and not hetIsDag:
 # 3
 if not deKoeienZijnBinnen and erIsVeelWind and not erMoetGemolkenWorden:
     print(naarBinnen)
-if not deKoeienZijnBinnen and erIsVeelWind and erMoetGemolkenWorden:
+elif not deKoeienZijnBinnen and erIsVeelWind and erMoetGemolkenWorden:
     print(naarBinnen + " en " + melken)
 
 # 4
 if deGierputIsVol and erIsRegen and not deKoeienZijnBinnen:
     print(naarBinnen + " en " + mesten)
-if deGierputIsVol and erIsRegen and deKoeienZijnBinnen:
+elif deGierputIsVol and erIsRegen and deKoeienZijnBinnen:
     print(mesten)
 
 # 5
 if hetIsHerfst and erIsZon and deKoeienZijnBinnen:
     print(maaien)
-if hetIsHerfst and erIsZon and not deKoeienZijnBinnen:
+elif hetIsHerfst and erIsZon and not deKoeienZijnBinnen:
     print(naarBinnen + " en " + maaien)
 
 # 6
