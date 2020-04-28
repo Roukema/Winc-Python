@@ -405,3 +405,9 @@ if paspoortXIs18 and isInCommonWealth:
     paspoortX['nationaliteit'] = "Canadees"
 
 print("Paspoort na wijziging", paspoortX)
+
+paspoortX["pasfoto"] = "nieuwepasFoto.png"
+
+paspoortX["vingerafdrukken"] = [(paspoortX["vingerafdrukken"][0],) * 10]
+
+print(paspoortX)
