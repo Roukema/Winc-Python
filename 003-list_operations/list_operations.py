@@ -33,22 +33,22 @@ zat_in_de_band = []
 zat_in_de_band_tekst = ""
 
 
-for x in alle_band_leden:
-    if type(x[-1]) == list:
-        if x[-1][0] <= jaartal and x[-1][1] >= jaartal:
-            zat_in_de_band.append(x)
-    elif x[-1] == jaartal:
-        zat_in_de_band.append(x)
+for list_bandlid in alle_band_leden:
+    if type(list_bandlid[-1]) == list:
+        if list_bandlid[-1][0] <= jaartal and list_bandlid[-1][1] >= jaartal:
+            zat_in_de_band.append(list_bandlid)
+    elif list_bandlid[-1] == jaartal:
+        zat_in_de_band.append(list_bandlid)
 
 print(zat_in_de_band)
 
-for x in zat_in_de_band:
-    if type(x[-2]) == list:
+for list_bandlid in zat_in_de_band:
+    if type(list_bandlid[-2]) == list:
         zat_in_de_band_tekst += (
-            f" {x[0]} speelt {x[-2][0]} en doet {x[-2][1]},")
+            f" {list_bandlid[0]} speelt {list_bandlid[-2][0]} en doet {list_bandlid[-2][1]},")
     else:
         zat_in_de_band_tekst += (
-            f" {x[0]} speelt {x[-2]},")
+            f" {list_bandlid[0]} speelt {list_bandlid[-2]},")
 
 zat_in_de_band_tekst = zat_in_de_band_tekst.strip(",")
 zat_in_de_band_tekst += (".")
