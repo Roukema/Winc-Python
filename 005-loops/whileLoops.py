@@ -1,4 +1,5 @@
 import re
+
 all_countries = [
     "Afghanistan",
     "Albania",
@@ -258,7 +259,7 @@ nieuwe_lijst_landen = []
 # print(nieuwe_lijst_landen)
 
 for land in all_countries:
-    landDict = {'naam': land, 'aantal': len(land)}
+    landDict = {"naam": land, "aantal": len(land)}
     nieuwe_lijst_landen.append(landDict)
 
 
@@ -286,8 +287,11 @@ while teller < len(nieuwe_lijst_landen):
 nieuwe_lijst_landen_klinkers = []
 print(kortenamenlijst)
 for land in all_countries:
-    landDict = {'naam': land, 'aantal': len(
-        land), 'aantal_klinkers': len(re.sub('[^aeiou]', '', land))+1}
+    landDict = {
+        "naam": land,
+        "aantal": len(land),
+        "aantal_klinkers": len(re.sub("[^aeiou]", "", land)) + 1,
+    }
     nieuwe_lijst_landen_klinkers.append(landDict)
 
 # 2
@@ -307,7 +311,7 @@ while len(meeste_klinkers_lijst) != 3:
         pass
     aantalKlinkers += 1
     teller = 0
-    if len(meeste_klinkers_lijst)+1 == 3:
+    if len(meeste_klinkers_lijst) + 1 == 3:
         break
     meeste_klinkers_lijst = []
 
@@ -318,8 +322,33 @@ print(meeste_klinkers_lijst)
 
 verzameldeletters = []
 teller = 0
-alfabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
-           'l', 'm', 'n', 'o', 'p', 'q', 'r', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+alfabet = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+]
 letterteller = 0
 landen_nodig = []
 
@@ -327,7 +356,10 @@ landen_nodig = []
 while teller < len(all_countries) and alfabet != []:
     while letterteller < len(all_countries[teller]):
         letter_aan_de_beurt = all_countries[teller][letterteller].lower()
-        if letter_aan_de_beurt not in verzameldeletters and letter_aan_de_beurt in alfabet:
+        if (
+            letter_aan_de_beurt not in verzameldeletters
+            and letter_aan_de_beurt in alfabet
+        ):
             verzameldeletters += letter_aan_de_beurt
             alfabet.remove(letter_aan_de_beurt)
             letterteller += 1

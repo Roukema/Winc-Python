@@ -1,4 +1,5 @@
 from random import randrange
+
 all_countries = [
     "Afghanistan",
     "Albania",
@@ -307,81 +308,49 @@ commonwealth_states = [
     "Vanuatu",
     "Zambia",
 ]
-achternamen = [
-    "Bakker",
-    "de Jong",
-    "Slagter",
-    "Cruijf",
-    "Oranje"
-]
-voornamen = [
-    "Willem",
-    "Alfred",
-    "Roos",
-    "Lisa",
-    "Jaap"
-]
-geboorteData = [
-    '11032003',
-    '22041994',
-    '13111995',
-    '28042002'
-]
-geboortePlaatsen = [
-    "delft",
-    "leiden",
-    "rotterdam",
-    "amsterdam",
-    "goes"
-]
-lengtes = [
-    1.40,
-    2.02,
-    1.98,
-    1.63,
-    1.86
-]
-bsnNummers = [
-    186439246,
-    186439243,
-    186439242,
-    186439248,
-    186439249
-]
+achternamen = ["Bakker", "de Jong", "Slagter", "Cruijf", "Oranje"]
+voornamen = ["Willem", "Alfred", "Roos", "Lisa", "Jaap"]
+geboorteData = ["11032003", "22041994", "13111995", "28042002"]
+geboortePlaatsen = ["delft", "leiden", "rotterdam", "amsterdam", "goes"]
+lengtes = [1.40, 2.02, 1.98, 1.63, 1.86]
+bsnNummers = [186439246, 186439243, 186439242, 186439248, 186439249]
 
 # 1
 paspoortKlaas = {
-    'pasfoto': "pasfoto.png",
-    'achternaam': "Bakker",
-    'voornamen': "Klaas",
-    'geboortedatum': '22011992',
-    'geboorteplaats': "katwijk",
-    'geslacht': "man",
-    'lengte': 1.86,
-    'handtekening': "handtekening.png",
-    'BSN': 186439246,
-    'nationaliteit': "nederlands",
-    'vingerafdrukken': ['vinger1.png', 'vinger2.pgn']
+    "pasfoto": "pasfoto.png",
+    "achternaam": "Bakker",
+    "voornamen": "Klaas",
+    "geboortedatum": "22011992",
+    "geboorteplaats": "katwijk",
+    "geslacht": "man",
+    "lengte": 1.86,
+    "handtekening": "handtekening.png",
+    "BSN": 186439246,
+    "nationaliteit": "nederlands",
+    "vingerafdrukken": ["vinger1.png", "vinger2.pgn"],
 }
 
-gegevensKlaas = [paspoortKlaas['geboortedatum'],
-                 paspoortKlaas['lengte'], paspoortKlaas['geboorteplaats']]
+gegevensKlaas = [
+    paspoortKlaas["geboortedatum"],
+    paspoortKlaas["lengte"],
+    paspoortKlaas["geboorteplaats"],
+]
 
 print(gegevensKlaas)
 
 # 2
 randomPaspoort = {
-    'pasfoto': "pasfoto.png",
-    'achternaam': achternamen[randrange(4)],
-    'voornamen': voornamen[randrange(4)],
-    'geboortedatum': geboorteData[randrange(4)],
-    'geboorteplaats': geboortePlaatsen[randrange(4)],
-    'geslacht': "man",
-    'lengte': lengtes[randrange(4)],
-    'handtekening': "handtekening.png",
-    'BSN': bsnNummers[randrange(4)],
-    'nationaliteit': all_countries[randrange(len(all_countries))],
-    'vingerafdrukken': ['vinger1.png', 'vinger2.pgn']
+    "pasfoto": "pasfoto.png",
+    "achternaam": achternamen[randrange(4)],
+    "voornamen": voornamen[randrange(4)],
+    "geboortedatum": geboorteData[randrange(4)],
+    "geboorteplaats": geboortePlaatsen[randrange(4)],
+    "geslacht": "man",
+    "lengte": lengtes[randrange(4)],
+    "handtekening": "handtekening.png",
+    "BSN": bsnNummers[randrange(4)],
+    "nationaliteit": all_countries[randrange(len(all_countries))],
+    "vingerafdrukken": ["vinger1.png", "vinger2.pgn"],
 }
 print(randomPaspoort)
 
@@ -390,19 +359,26 @@ paspoortX = randomPaspoort
 
 print("paspoortX before", paspoortX)
 paspoortXIs18 = False
-if int(paspoortX['geboortedatum'][-4:]) < (2020-18):
+if int(paspoortX["geboortedatum"][-4:]) < (2020 - 18):
     paspoortXIs18 = True
-elif int(paspoortX['geboortedatum'][-4:]) == (2020-18) and int(paspoortX['geboortedatum'][2:4]) < 4:
+elif (
+    int(paspoortX["geboortedatum"][-4:]) == (2020 - 18)
+    and int(paspoortX["geboortedatum"][2:4]) < 4
+):
     paspoortXIs18 = True
-elif int(paspoortX['geboortedatum'][-4:]) == (2020-18) and int(paspoortX['geboortedatum'][2:4]) == 4 and int(paspoortX['geboortedatum'][0:2]) <= 28:
+elif (
+    int(paspoortX["geboortedatum"][-4:]) == (2020 - 18)
+    and int(paspoortX["geboortedatum"][2:4]) == 4
+    and int(paspoortX["geboortedatum"][0:2]) <= 28
+):
     paspoortXIs18 = True
 
 isInCommonWealth = False
-if paspoortX['nationaliteit'] in commonwealth_states:
+if paspoortX["nationaliteit"] in commonwealth_states:
     isInCommonWealth = True
 
 if paspoortXIs18 and isInCommonWealth:
-    paspoortX['nationaliteit'] = "Canadees"
+    paspoortX["nationaliteit"] = "Canadees"
 
 print("Paspoort na wijziging", paspoortX)
 
