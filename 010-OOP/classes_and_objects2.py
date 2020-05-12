@@ -19,11 +19,11 @@ class Team:
         self.trainer = trainer
 
     def get_players_with_team(player_team):
-    players = []
-    for speler in alle_spelers:
-        if player_team == speler.team:
-            players.append(speler)
-    return players    
+        players = []
+        for speler in alle_spelers:
+            if player_team == speler.team:
+                players.append(speler)
+        return players    
 
     def get_player_with_id(player_id):
         for speler in alle_spelers:
@@ -36,9 +36,9 @@ class Trainer:
         self.team = team
     
     def get_trainer_with_team(team):
-    for trainer in trainers:
-        if trainer.team == team:
-            return trainer.name
+        for trainer in Match.trainers:
+            if trainer.team == team:
+                return trainer.name
 
 
 class MatchInformation: 
@@ -52,13 +52,12 @@ class MatchInformation:
         self.vistors = str(vistors)
 
 class Match:
-    def __init__(self, teams, trainers, goals, matchinfo):
+    def __init__(self, teams, goals):
         self.teams = teams
-        self.trainers = trainers
+        self.trainers = self.trainers
         self.goals = goals
-        self.matchinfo = matchinfo
 
-    info = MatchInformation("19 mei 1972", "Ajax", "Vitesse", "de Meer", "Amsterdam", "Joop Vervoort", 6000)
+    matchinfo = MatchInformation("19 mei 1972", "Ajax", "Vitesse", "de Meer", "Amsterdam", "Joop Vervoort", 6000)
     trainers =[
         Trainer("Cor Brom", "Vitesse"),
         Trainer("Stefan Kovács", "Ajax")]
@@ -132,7 +131,7 @@ teams = [
     Team("Vitesse", Team.get_players_with_team("Vitesse"), Trainer.get_trainer_with_team("Vitesse"))
 ]
 
-all_info = Match(teams, trainers, doelpunten, info)
+all_info = Match(teams, doelpunten)
  
 # def eindstand(spelers, doelpunten):
 #     doelpunten_ajax = 0
