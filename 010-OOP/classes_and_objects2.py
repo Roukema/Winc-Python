@@ -11,17 +11,35 @@ class Goal:
         self.minuut = minuut
         self.player = player.full_name
         self.team = player.team
- 
+
 class Team:
     def __init__(self, name, players, trainer):
         self.name = name
         self.players = players
         self.trainer = trainer
 
+    def get_players_with_team(player_team):
+    players = []
+    for speler in alle_spelers:
+        if player_team == speler.team:
+            players.append(speler)
+    return players    
+
+    def get_player_with_id(player_id):
+        for speler in alle_spelers:
+            if player_id == speler.id:
+                return speler
+
 class Trainer: 
     def __init__(self, name, team):
         self.name = name
         self.team = team
+    
+    def get_trainer_with_team(team):
+    for trainer in trainers:
+        if trainer.team == team:
+            return trainer.name
+
 
 class MatchInformation: 
     def __init__(self, date, home_team, away_team, stadion, stadion_location, referee, vistors):
@@ -33,22 +51,19 @@ class MatchInformation:
         self.referee = referee
         self.vistors = str(vistors)
 
-# class Match:
-#     def __init__(self, teams, trainers, goals, matchinfo)
-#     self.teams = teams
-#     self.trainers = trainers
-#     self.goals = goals
-#     self.matchinfo = machtinfo
+class Match:
+    def __init__(self, teams, trainers, goals, matchinfo):
+        self.teams = teams
+        self.trainers = trainers
+        self.goals = goals
+        self.matchinfo = matchinfo
+
+    info = MatchInformation("19 mei 1972", "Ajax", "Vitesse", "de Meer", "Amsterdam", "Joop Vervoort", 6000)
+    trainers =[
+        Trainer("Cor Brom", "Vitesse"),
+        Trainer("Stefan Kovács", "Ajax")]
 
 
-# all_info = Match(teams, trainers, doelpunten, info)
-
-info = MatchInformation("19 mei 1972", "Ajax", "Vitesse", "de Meer", "Amsterdam", "Joop Vervoort", 6000)
-
-trainers =[
-    Trainer("Cor Brom", "Vitesse"),
-    Trainer("Stefan Kovács", "Ajax")
-]
 
 ajax = [
     "Heinz Stuy",
@@ -95,44 +110,29 @@ while teller < (len(ajax) + len(vitesse)):
 
 
 
-def get_player_with_id(player_id):
-    for speler in alle_spelers:
-        if player_id == speler.id:
-            return speler
-
-def get_trainer_with_team(team):
-    for trainer in trainers:
-        if trainer.team == team:
-            return trainer.name
-
-def get_players_with_team(player_team):
-    players = []
-    for speler in alle_spelers:
-        if player_team == speler.team:
-            players.append(speler)
-    return players
 
 
 doelpunten = [
-    Goal(10, get_player_with_id(7)),
-    Goal(28, get_player_with_id(7)),
-    Goal(32, get_player_with_id(9)),
-    Goal(42, get_player_with_id(9)),
-    Goal(47, get_player_with_id(9)),
-    Goal(49, get_player_with_id(10)),
-    Goal(51, get_player_with_id(10)),
-    Goal(63, get_player_with_id(5)),
-    Goal(70, get_player_with_id(4)),
-    Goal(75, get_player_with_id(19)),
-    Goal(78, get_player_with_id(9)),
-    Goal(81, get_player_with_id(10)),
-    Goal(88, get_player_with_id(7)),
+    Goal(10, Team.get_player_with_id(7)),
+    Goal(28, Team.get_player_with_id(7)),
+    Goal(32, Team.get_player_with_id(9)),
+    Goal(42, Team.get_player_with_id(9)),
+    Goal(47, Team.get_player_with_id(9)),
+    Goal(49, Team.get_player_with_id(10)),
+    Goal(51, Team.get_player_with_id(10)),
+    Goal(63, Team.get_player_with_id(5)),
+    Goal(70, Team.get_player_with_id(4)),
+    Goal(75, Team.get_player_with_id(19)),
+    Goal(78, Team.get_player_with_id(9)),
+    Goal(81, Team.get_player_with_id(10)),
+    Goal(88, Team.get_player_with_id(7)),
 ]
 teams = [
-    Team("Ajax", get_players_with_team("Ajax"), get_trainer_with_team("Ajax")),
-    Team("Vitesse", get_players_with_team("Vitesse"), get_trainer_with_team("Vitesse"))
+    Team("Ajax", Team.get_players_with_team("Ajax"), Trainer.get_trainer_with_team("Ajax")),
+    Team("Vitesse", Team.get_players_with_team("Vitesse"), Trainer.get_trainer_with_team("Vitesse"))
 ]
 
+all_info = Match(teams, trainers, doelpunten, info)
  
 # def eindstand(spelers, doelpunten):
 #     doelpunten_ajax = 0
@@ -164,16 +164,16 @@ teams = [
 # 2
 
 
-def print_match_report(alle_spelers, doelpunten, teams, trainers, info):
+def print_match_report(all_info):
     doelpunten_ajax = 0
     doelpunten_vitesse = 0
     winnaar = ""
     verliezer = ""
-    print(f'Op {info.date} speelde {info.home_team} tegen {info.away_team} in het {info.stadion} stadion in {info.stadion_location}. \n\
-    Er waren {info.vistors} bezoekers aanwezig in het stadion. \n\
-    De wedstrijd werd gefloten door {info.referee}. \n\
-    De trainer van {info.home_team} was {get_trainer_with_team(info.home_team)}.\n\
-    De trainer van {info.away_team} was {get_trainer_with_team(info.away_team)}.')
+    print(f'Op {all_info.matchinfo.date} speelde {all_info.matchinfo.home_team} tegen {all_info.matchinfo.away_team} in het {all_info.matchinfo.stadion} stadion in {all_info.matchinfo.stadion_location}. \n\
+    Er waren {all_info.matchinfo.vistors} bezoekers aanwezig in het stadion. \n\
+    De wedstrijd werd gefloten door {all_info.matchinfo.referee}. \n\
+    De trainer van {all_info.matchinfo.home_team} was {Trainer.get_trainer_with_team(all_info.matchinfo.home_team)}.\n\
+    De trainer van {all_info.matchinfo.away_team} was {Trainer.get_trainer_with_team(all_info.matchinfo.away_team)}.')
     for doelpunt in doelpunten:
         if doelpunt.team == "ajax":
             doelpunten_ajax += 1
@@ -224,7 +224,7 @@ def print_match_report(alle_spelers, doelpunten, teams, trainers, info):
 
 
 # eindstand(alle_spelers, doelpunten, teams, trainers)
-print_match_report(alle_spelers, doelpunten, teams, trainers, info)
+print_match_report(all_info)
 
 
 
