@@ -9,7 +9,8 @@ class Player:
 class Goal:
     def __init__(self, minuut, player):
         self.minuut = minuut
-        self.full_name_player = player.full_name
+        self.player = player.full_name
+        self.team = player.team
 
    
 class Team:
@@ -65,12 +66,10 @@ while teller < (len(ajax) + len(vitesse)):
     teller_vitesse += 1
 
 
-print(alle_spelers)
 
 def get_player_with_id(player_id):
     for speler in alle_spelers:
         if player_id == speler.id:
-            print(speler.full_name)
             return speler
 
 
@@ -89,15 +88,16 @@ doelpunten = [
     Goal(81, get_player_with_id(10)),
     Goal(88, get_player_with_id(7)),
 ]
-
-
+for doelpunt in doelpunten:
+    print("huidige lijst met doelpunten", doelpunt.player, doelpunt.team)
+ 
 def eindstand(spelers, doelpunten):
     doelpunten_ajax = 0
     doelpunten_vitesse = 0
     winnaar = ""
     verliezer = ""
     for doelpunt in doelpunten:
-        if speler.team == "ajax":
+        if doelpunt.team == "ajax":
             doelpunten_ajax += 1
         else:
             doelpunten_vitesse += 1
@@ -127,38 +127,36 @@ def print_match_report(spelers, doelpunten):
     winnaar = ""
     verliezer = ""
     for doelpunt in doelpunten:
-        for speler in spelers:
-            if speler.id == doelpunt.id_scoorende_speler:
-                if speler.team == "ajax":
-                    doelpunten_ajax += 1
-                    print(
-                        "In de "
-                        + str(doelpunt.minuut)
-                        + "e minuut scoort "
-                        + speler.full_name
-                        + " voor "
-                        + speler.team
-                        + ", het is "
-                        + str(doelpunten_ajax)
-                        + " - "
-                        + str(doelpunten_vitesse)
-                        + "."
-                    )
-                else:
-                    doelpunten_vitesse += 1
-                    print(
-                        "In de "
-                        + str(doelpunt.minuut)
-                        + "e minuut scoort "
-                        + speler.full_name
-                        + " voor "
-                        + speler.team
-                        + ", het is "
-                        + str(doelpunten_ajax)
-                        + " - "
-                        + str(doelpunten_vitesse)
-                        + "."
-                    )
+        if doelpunt.team == "ajax":
+            doelpunten_ajax += 1
+            print(
+                "In de "
+                + str(doelpunt.minuut)
+                + "e minuut scoort "
+                + doelpunt.player
+                + " voor "
+                + doelpunt.team
+                + ", het is "
+                + str(doelpunten_ajax)
+                + " - "
+                + str(doelpunten_vitesse)
+                + "."
+            )
+        else:
+            doelpunten_vitesse += 1
+            print(
+                "In de "
+                + str(doelpunt.minuut)
+                + "e minuut scoort "
+                + doelpunt.player
+                + " voor "
+                + doelpunt.team
+                + ", het is "
+                + str(doelpunten_ajax)
+                + " - "
+                + str(doelpunten_vitesse)
+                + "."
+            )
     if doelpunten_ajax > doelpunten_vitesse:
         winnaar = "ajax"
         verliezer = "vitesse"
