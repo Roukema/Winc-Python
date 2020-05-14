@@ -26,6 +26,19 @@ class Team:
         for player in teamlist:
             self.players.append(Player(len(self.players), player, teamName))
 
+    def hasPlayerWithId(self, id):
+        for player in self.players:
+            if player.id == id:
+                return True
+
+        return False
+
+    def getPlayerWithId(self, id):
+        for player in self.players:
+            if player.id == id:
+                return player
+
+
     # def get_players_with_team(self, player_team):
     #     players = []
     #     for speler in self.players:
@@ -61,25 +74,14 @@ class Match:
         self.home_players = home_players
         self.away_players = away_players
 
-        self.home_team = Team(home_players[0].team, home_players, trainers[0])
-        self.away_team = Team(away_players[0].team, away_players, trainers[1])
         self.goals = []
 
-        print("voor", self.goals)
-
-    # def addGoal(self, goal):
-    #     self.goals.append(goal)
+        # print("voor", self.goals)
 
     def addGoal(self, goal):
-        for player in self.home_players:
-            if player.id == goal[1]:
-                return self.goals.append(Goal(goal[0], player.full_name, player.team))
+        self.goals.append(goal)
 
-        for player in self.away_players:
-            if player.id == goal[1]:
-                return self.goals.append(Goal(goal[0], player.full_name, player.team))
-
-    # print("na", self.goals[0].player)
+        print("na", [goal.player for goal in self.goals])
 
 
 matchinfo = MatchInformation(
@@ -129,6 +131,9 @@ vitesse_spelers = [
 vitesse_spelers = [
     Player(speler["id"], speler["naam"], "vitesse") for speler in vitesse_spelers
 ]
+home_team = Team(ajax_spelers[0].team, ajax_spelers, trainers[0])
+away_team = Team(vitesse_spelers[0].team, vitesse_spelers, trainers[1])
+
 doelpunten = [
     (10, 7),
     (28, 7),
@@ -144,9 +149,20 @@ doelpunten = [
     (81, 10),
     (88, 7),
 ]
-
-ajvi72 = Match(matchinfo, trainers, ajax_spelers, vitesse_spelers)
+doelpuntenNieuw = []
 for goal in doelpunten:
+    if home_team.hasPlayerWithId(goal[1]):
+        doelpuntenNieuw.append(
+            Goal(goal[0], home_team.getPlayerWithId(goal[1]), home_team)
+        )
+    else:
+        doelpuntenNieuw.append(
+            Goal(goal[0], away_team.getPlayerWithId(goal[1]), away_team)
+        )
+
+
+ajvi72 = Match(matchinfo, trainers, home_team, away_team)
+for goal in doelpuntenNieuw:
     ajvi72.addGoal(goal)
 
 
